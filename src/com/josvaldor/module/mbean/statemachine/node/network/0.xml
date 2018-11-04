@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>Network</comment>
+<comment>Node</comment>
 <entry key="idSet">0</entry>
-<entry key="waitForOutputInputDelay">10</entry>
-<entry key="log4JPath">./module/configuration/log4j/log4j.xml</entry>
-<entry key="prompt">computer</entry>
-<entry key="hostAddress"></entry>
+<entry key="waitForInputDelay">1</entry>
+<entry key="waitForConnectionDelay">1</entry>
 <entry key="configurationPropertiesPath">./module/configuration/properties.xml</entry>
+<entry key="log4JPath">./module/configuration/log4j/log4j.xml</entry>
 </properties>
