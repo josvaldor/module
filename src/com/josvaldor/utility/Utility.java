@@ -1,6 +1,21 @@
+/*
+Copyright 2018 Josvaldor
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ */
+
 package com.josvaldor.utility;
 
-import com.josvaldor.entity.Entity;
 import com.josvaldor.protocol.Protocol;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -15,7 +30,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
@@ -456,8 +470,8 @@ public class Utility
       }
       catch (NumberFormatException e)
       {
-        if (Entity.logger != null) {
-          Entity.logger.trace("Entity.stringToDouble(" + string + ") NumberFormatException");
+        {
+          logger.trace("Entity.stringToDouble(" + string + ") NumberFormatException");
         }
       }
     }
@@ -499,11 +513,11 @@ public class Utility
       }
       catch (NoSuchAlgorithmException e)
       {
-        Entity.logger.error("newHashString(...) NoSuchAlgorithmException");
+        logger.error("newHashString(...) NoSuchAlgorithmException");
       }
       catch (UnsupportedEncodingException e)
       {
-        Entity.logger.error("newHashString(...) UnsupportedEncodingException");
+        logger.error("newHashString(...) UnsupportedEncodingException");
       }
     }
     return hash;
@@ -568,9 +582,9 @@ public class Utility
           stringBuilder.append(character);
         }
         string = stringBuilder.toString();
-        if (Entity.logger.isDebugEnabled()) {
-          Entity.logger.trace("getKeyAttributeName(" + string + ")");
-        }
+
+        logger.trace("getKeyAttributeName(" + string + ")");
+
       }
     }
     return string;
@@ -636,9 +650,9 @@ public class Utility
       stringBuilder.append(character);
     }
     string = stringBuilder.toString();
-    if (Entity.logger.isDebugEnabled()) {
-      Entity.logger.trace("getKeyClassName(" + clazz + ") (string = " + string + ")");
-    }
+
+    logger.trace("getKeyClassName(" + clazz + ") (string = " + string + ")");
+
     return string;
   }
   

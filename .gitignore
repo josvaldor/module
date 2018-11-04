@@ -1,4 +1,5 @@
 ./bin
-./config/
+.idea
 ./lib
 ./module
+target

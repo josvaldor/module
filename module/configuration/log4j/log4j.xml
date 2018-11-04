@@ -11,46 +11,16 @@
     	<param name="threshold" value="debug"/>
 		<param name="immediateFlush" value="true"/>
     	<rollingPolicy name="File" class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-      		<param name="FileNamePattern" value="station/log/station-%d{yyyyMMddHH}.log.gz"/>
-      		<param name="ActiveFileName" value="station/log/station.log"/>
+      		<param name="FileNamePattern" value="module/log/module-%d{yyyyMMddHH}.log.gz"/>
+      		<param name="ActiveFileName" value="module/log/module.log"/>
     	</rollingPolicy>
     	<layout class="org.apache.log4j.PatternLayout">
       		<param name="ConversionPattern" value="%d{yyyyMMddHHmmss}:%-5p:[%t]:%m%n"/>
     	</layout>
   	</appender>
-	<appender name="RemoteLog" class="org.apache.log4j.net.SyslogAppender">
-	      <param name="Facility" value="USER"/>
-		  <param name="SyslogHost" value="0.0.0.0"/>
-		  <param name="Threshold" value="INFO"/>
-		  <layout class="org.apache.log4j.PatternLayout">
-		    <param name="ConversionPattern" value="%d{yyyyMMddHHmmss}:%-5p:[%t]:%m%n"/>
-		  </layout>
-	</appender>
-	<!-- Modify the following params: url, username, password, and sql -->
-	<appender name="ManagementDatabaseLog" class="org.apache.log4j.jdbcplus.JDBCAppender">
-	   <param name="url" value="jdbc:mysql://0.0.0.0:3306/management?autoReconnect=true"/>
-	   <param name="username" value="management"/>
-	   <param name="password" value="management"/>
-	   <param name="sql" value="INSERT INTO Log (date,level,thread,message,stationIdentification) VALUES ('@TIMESTAMP@','@PRIO@','@THREAD@','@MSG@','22001122')"/>
-	</appender>
-	     <logger name="org.apache.cayenne.access.QueryLogger"> <level value="WARN"/></logger>
-<!--  	<logger name="com.meritcharge.entity.station.mx760.EightBitStatus"> <level value="TRACE"/></logger> -->
-<!--  	<logger name="com.meritcharge.entity.station.mx760.Keypad"> <level value="DEBUG"/></logger> -->
-<!--  	<logger name="com.meritcharge.entity.station.mx760.Scene"> <level value="trace"/></logger> -->
-<!--  	<logger name="com.meritcharge.entity.station.mx760.MX760"> <level value="TRACE"/></logger> -->
-<!--  	<logger name="com.meritcharge.protocol.Protocol"> <level value="TRACE"/></logger> -->
-<!-- 	<logger name="com.meritcharge.protocol.station.j1772controlboard.ergb.ErgBProtocol"> <level value="TRACE"/></logger> -->
-<!-- 	<logger name="com.meritcharge.protocol.station.mx760.MX760Protocol"> <level value="TRACE"/></logger> -->
-<!--  	<logger name="com.meritcharge.entity.station.mx760.Storyboard"> <level value="DEBUG"/></logger> -->
-<!--  	<logger name="com.meritcharge.entity.station.mx760.Scene"> <level value="DEBUG"/></logger> -->
-<!--  	<logger name="com.meritcharge.module.station.mx760.MX760Storyboard"> <level value="TRACE"/></logger> -->
-<!--  	<logger name="com.meritcharge.module.station.mx760.MX760Input"> <level value="TRACE"/></logger> -->
- 	<logger name="com.meritcharge.module.station.j1772controlboard.J1772ControlBoard"> <level value="DEBUG"/></logger>
     <root>
         <level value="info" />
         <appender-ref ref="ConsoleLog"/>
         <appender-ref ref="LocalLog"/>
-<!--    <appender-ref ref="ManagementDatabaseLog"/> -->
-<!--    <appender-ref ref="RemoteLog"/> -->
     </root>
 </log4j:configuration>
