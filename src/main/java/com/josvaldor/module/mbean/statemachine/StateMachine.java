@@ -88,7 +88,7 @@ public class StateMachine extends MBean implements StateMachineMBean {
 
 	protected void machine(int state, Object object) {
 //		if (logger.isDebugEnabled()) {
-//			logger.debug("machine(" + getState(state) + ", " + object + ")");
+//			logger.info("machine(" + getState(state) + ", " + object + ")");
 //		}
 	}
 

@@ -153,9 +153,9 @@ public class Module
   public void run()
   {
     initialize();
-    if (logger.isDebugEnabled())
+//    if (logger.isDebugEnabled())
     {
-      logger.trace(this + ".run()");
+      logger.info(this + ".run()");
     }
     countDownLatchCountDown();
   }

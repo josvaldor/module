@@ -16,4 +16,10 @@ limitations under the License.
 
 package com.josvaldor.protocol;
 
-public abstract interface ProtocolInterface {}
+public abstract interface ProtocolInterface {
+
+    public Object serialize(Object object);
+
+    public Object deserialize(Object object);
+
+}

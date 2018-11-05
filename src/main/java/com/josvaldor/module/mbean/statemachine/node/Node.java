@@ -84,6 +84,7 @@ public class Node
 {
   public static final int LINUX = 1;
   public static final int WINDOWS = 2;
+  public static final int MAC = 3;
   public static final int WAIT_FOR_INPUT = 2;
   public static final int WAIT_FOR_CONNECTION = 1;
   protected double waitForConnectionDelay;
@@ -272,6 +273,7 @@ public class Node
   @Override
   protected void machine(int state, Object object)
   {
+//    logger.info("machine(" + getState(state) + ", " + object + ")");
     switch (state)
     {
     case 2: 
@@ -409,7 +411,7 @@ public class Node
       logger.debug("connection()");
     }
     boolean connection = false;
-    if (this.connection.equalsIgnoreCase("serial"))
+    if ("serial".equalsIgnoreCase(this.connection))
     {
       CommPortIdentifier commPortIdentifier = newCommPortIdentifier(this.device);
       CommPort commPort = newCommPort(commPortIdentifier, this.timeout);
@@ -703,6 +705,7 @@ public class Node
   
   protected Properties idPropertiesLoadFromXML(int id)
   {
+    logger.debug("idPropertiesLoadFromXML("+id+")");
     Properties properties = propertiesLoadFromXML(getClass().getResourceAsStream(id + ".xml"));
     if (properties == null) {
       properties = new Properties();
@@ -714,32 +717,23 @@ public class Node
   
   protected Properties configurationPropertiesLoadFromXML(Properties properties)
   {
-    if (logger.isDebugEnabled()) {
-      logger.trace("configurationPropertiesLoadFromXML(" + properties + ")");
-    }
+    logger.debug("configurationPropertiesLoadFromXML(" + properties + ")");
     Properties configurationProperties = new Properties();
     if (properties != null)
     {
       this.configurationPropertiesPath = properties.getProperty("configurationPropertiesPath");
-      if (logger.isDebugEnabled()) {
-        logger.debug("configurationPropertiesLoadFromXML(properties) (this.configurationPropertiesPath = " + 
-          this.configurationPropertiesPath + ")");
-      }
+      logger.debug("configurationPropertiesLoadFromXML(properties) (this.configurationPropertiesPath = " + this.configurationPropertiesPath + ")");
       if (StringUtils.isNotBlank(this.configurationPropertiesPath))
       {
         File configurationPropertiesFile = new File(this.configurationPropertiesPath);
         if (!configurationPropertiesFile.exists())
         {
-          if (logger.isDebugEnabled()) {
-            logger.debug("configurationPropertiesLoadFromXML(properties) (!configurationPropertiesFile.exists())");
-          }
+          logger.debug("configurationPropertiesLoadFromXML(properties) (!configurationPropertiesFile.exists())");
           propertiesStoreToXML(configurationProperties, this.configurationPropertiesPath, "");
         }
         else
         {
-          if (logger.isDebugEnabled()) {
-            logger.debug("configurationPropertiesLoadFromXML(properties) (configurationPropertiesFile.exists())");
-          }
+          logger.debug("configurationPropertiesLoadFromXML(properties) (configurationPropertiesFile.exists())");
           configurationProperties = propertiesLoadFromXML(configurationPropertiesFile);
           this.configurationPropertiesKeySet = configurationProperties.keySet();
         }
@@ -1210,6 +1204,7 @@ public class Node
   
   public Properties propertiesLoadFromXML(InputStream inputStream)
   {
+    logger.debug("propertiesLoadFromXML(" + inputStream + ")");
     Properties properties = null;
     if (inputStream != null) {
       try
